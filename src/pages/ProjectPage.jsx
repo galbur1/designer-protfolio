@@ -13,7 +13,7 @@ const mockProjects = {
     media: [
       { type: "video", src: "/images/novak/2.mp4", des: "[The archive website on desktop]" },
       { type: "video", src: "/images/novak/3.mp4", des: "[Animated poster: house tour]" },
-      { type: "image", src: "/images/novak/1.jpg", des: "[Museum shop: collectible sculpture boxes]" },
+      { type: "image", src: "/images/novak/1.jpg", des: "[Miniature 3D sculptures]" },
       { type: "image", src: "/images/novak/2.jpg" },
       { type: "video", src: "/images/novak/6.mp4", des: "[Animated poster: sculpture workshop]" },
       { type: "image", src: "/images/novak/3.jpg", des: "[Museum shop: tote bag]" },
