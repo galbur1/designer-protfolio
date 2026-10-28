@@ -2,22 +2,25 @@ import React, { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 
 const AboutMeCard = ({ visible, onClose }) => {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(null); // "email" | "phone" | null
   const popupRef = useRef(null);
 
-  const handleClick = (e) => {
-    const rect = e.target.getBoundingClientRect();
+  const handleCopy = (e, key, text) => {
+    const rect = e.currentTarget.getBoundingClientRect();
     let x = (rect.left + rect.width / 2) / window.innerWidth;
 
-    const screenWidth = window.innerWidth;
-    if (screenWidth < 640) {
-      x = 0.5;
-    } else if (screenWidth < 1024) {
-      x = 0.7;
-    } else if (screenWidth < 1750) {
-      x = 0.41;
-    } else {
-      x = 0.34;
+    // The email button keeps its hand-tuned origins; the phone follows its own button.
+    if (key === "email") {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 640) {
+        x = 0.5;
+      } else if (screenWidth < 1024) {
+        x = 0.7;
+      } else if (screenWidth < 1750) {
+        x = 0.41;
+      } else {
+        x = 0.34;
+      }
     }
 
     confetti({
@@ -28,9 +31,9 @@ const AboutMeCard = ({ visible, onClose }) => {
       colors: ["#ff0a54", "#ff477e", "#ff7096", "#ff85a1", "#fbb1bd"],
     });
 
-    navigator.clipboard.writeText("galbur1@gmail.com").then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(key);
+      setTimeout(() => setCopied(null), 2000);
     });
   };
 
@@ -83,12 +86,12 @@ const AboutMeCard = ({ visible, onClose }) => {
             <div className="mt-4 mb-5 flex flex-col gap-2 sm:flex-row sm:justify-start sm:items-stretch">
               <div className="flex flex-row gap-2">
                 <button
-                  onClick={handleClick}
+                  onClick={(e) => handleCopy(e, "email", "galbur1@gmail.com")}
                   className="border border-black cursor-pointer p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
                 >
                   Galbur1@gmail.com
                 </button>
-                {copied && (
+                {copied === "email" && (
                   <div className="bg-black text-white text-sm sm:text-base p-2.5 w-fit sm:w-auto text-center">
                     Copied!
                   </div>
@@ -96,9 +99,17 @@ const AboutMeCard = ({ visible, onClose }) => {
               </div>
 
               <div className="flex flex-row gap-2">
-                <p className="border border-black p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center">
+                <button
+                  onClick={(e) => handleCopy(e, "phone", "+972542339921")}
+                  className="border border-black cursor-pointer p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
+                >
                   +972 5423 39921
-                </p>
+                </button>
+                {copied === "phone" && (
+                  <div className="bg-black text-white text-sm sm:text-base p-2.5 w-fit sm:w-auto text-center">
+                    Copied!
+                  </div>
+                )}
                 <a
                   href="/cv.pdf"
                   target="_blank"
