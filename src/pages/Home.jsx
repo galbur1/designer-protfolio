@@ -20,6 +20,8 @@ const Home = () => {
               <ProjectCard
                 title="01 Beit Novak"
                 image="images/beit_novak.jpg"
+            logo="images/novak/logo.svg"
+                logo="images/novak/logo.svg"
                 id="project-10"
               />
             </div>
@@ -100,6 +102,7 @@ const Home = () => {
           <ProjectCard
             title="01 Beit Novak"
             image="images/beit_novak.jpg"
+            logo="images/novak/logo.svg"
             id="project-10"
           />
 
