@@ -15,24 +15,33 @@ const Home = () => {
         {/* Make the container scrollable */}
         <div className="hidden md:block h-full overflow-y-auto scrollbar-hidden border-t border-x border-black">
           <div className="grid grid-cols-12 auto-rows-[14vh] gap-0">
+            {/* Final project */}
+            <div className="col-span-12 row-span-3">
+              <ProjectCard
+                title="01 Beit Novak"
+                image="images/beit_novak.jpg"
+                id="project-10"
+              />
+            </div>
+
             {/* New top row */}
             <div className="col-start-1 col-end-4 row-span-3">
               <ProjectCard
-                title="01 Neve"
+                title="02 Neve"
                 image="images/neve.png"
                 id="project-1"
               />
             </div>
             <div className="col-start-4 col-end-8 row-span-3">
               <ProjectCard
-                title="02 Wellnest App"
+                title="03 Wellnest App"
                 image="images/wellnest.gif"
                 id="project-2"
               />
             </div>
             <div className="col-start-8 col-end-13 row-span-3">
               <ProjectCard
-                title="03 Maagalim Event"
+                title="04 Maagalim Event"
                 image="images/maagalim_new.png"
                 id="project-3"
               />
@@ -41,21 +50,21 @@ const Home = () => {
             {/* Original first row */}
             <div className="col-start-1 col-end-6 row-span-3">
               <ProjectCard
-                title="04 Lifta"
+                title="05 Lifta"
                 image="images/lifta1.gif"
                 id="project-4"
               />
             </div>
             <div className="col-start-6 col-end-10 row-span-3">
               <ProjectCard
-                title="05 Princess Diana Tribute"
+                title="06 Princess Diana Tribute"
                 image="images/new_diana_autograph.png"
                 id="project-5"
               />
             </div>
             <div className="col-start-10 col-end-13 row-span-3">
               <ProjectCard
-                title="06 Sofa Trip"
+                title="07 Sofa Trip"
                 image="images/sofa_trip_gig.gif"
                 id="project-6"
               />
@@ -64,21 +73,21 @@ const Home = () => {
             {/* Original second row */}
             <div className="col-start-1 col-end-7 row-span-3">
               <ProjectCard
-                title="07 Dot App"
+                title="08 Dot App"
                 image="images/dot_app.png"
                 id="project-7"
               />
             </div>
             <div className="col-start-7 col-end-9 row-span-3">
               <ProjectCard
-                title="08 Rujum"
+                title="09 Rujum"
                 image="images/rojum.gif"
                 id="project-8"
               />
             </div>
             <div className="col-start-9 col-end-13 row-span-3">
               <ProjectCard
-                title="09 For Now"
+                title="10 For Now"
                 image="images/for_now.png"
                 id="project-9"
               />
@@ -88,47 +97,53 @@ const Home = () => {
 
         {/* Mobile layout */}
         <div className="flex flex-col gap-6 md:hidden px-1 pb-4">
-          {/* New row for mobile */}
-          <ProjectCard title="01 Neve" image="images/neve.png" id="project-1" />
           <ProjectCard
-            title="02 Wellnest"
+            title="01 Beit Novak"
+            image="images/beit_novak.jpg"
+            id="project-10"
+          />
+
+          {/* New row for mobile */}
+          <ProjectCard title="02 Neve" image="images/neve.png" id="project-1" />
+          <ProjectCard
+            title="03 Wellnest"
             image="images/wellnest.gif"
             id="project-2"
           />
           <ProjectCard
-            title="03 Maagalim"
+            title="04 Maagalim"
             image="images/maagalim_new.png"
             id="project-3"
           />
 
           {/* Existing mobile list */}
           <ProjectCard
-            title="04 Lifta"
+            title="05 Lifta"
             image="images/lifta1.gif"
             id="project-4"
           />
           <ProjectCard
-            title="05 Princess Diana Tribute"
+            title="06 Princess Diana Tribute"
             image="images/new_diana_autograph.png"
             id="project-5"
           />
           <ProjectCard
-            title="06 Sofa Trip"
+            title="07 Sofa Trip"
             image="images/sofa_trip_gig.gif"
             id="project-6"
           />
           <ProjectCard
-            title="07 The Dot App"
+            title="08 The Dot App"
             image="images/dot_app.png"
             id="project-7"
           />
           <ProjectCard
-            title="08 Rujum"
+            title="09 Rujum"
             image="images/rojum.gif"
             id="project-8"
           />
           <ProjectCard
-            title="09 For Now"
+            title="10 For Now"
             image="images/for_now.png"
             id="project-9"
           />

@@ -4,8 +4,26 @@ import AboutMeCard from "../components/AboutMeCard";
 import { useParams, useNavigate } from "react-router-dom";
 
 const mockProjects = {
+  "project-10": {
+    title: "01 Beit Novak",
+    description:
+      "A graphic identity and an archive website for the Beit Novak museum. Moshe Novak (1930–2012) was a multidisciplinary artist and, more importantly, my grandfather. The house where he lived and created is now a museum presenting his work, opened by our family to preserve it for future generations. Novak explored his identity as a family man, a Zionist and a Jew, and the landscapes of Haifa and Israel, through sculpture, jewelry, reliefs and tapestries, with a visual language of recurring motifs, his own handwriting, a play between 2D and 3D, vivid colors and geometric abstraction. The design balances preserving that language with developing a new, modern one for the museum. The project includes an archive website, posters, and products for the museum shop.",
+    tags: ["Visual Identity", "Branding", "Web", "Print", "Products", "2026", "Hebrew"],
+    link: { href: "https://beit-novak.vercel.app/", label: "Visit the archive" },
+    media: [
+      { type: "image", src: "/images/novak/4.jpg", des: "[Exhibition wall graphics]" },
+      { type: "image", src: "/images/novak/2.jpg", des: "[The exhibition space]" },
+      { type: "video", src: "/images/novak/website.mp4", des: "[The archive website]" },
+      { type: "video", src: "/images/novak/2.mp4", des: "[The archive website on desktop]" },
+      { type: "video", src: "/images/novak/3.mp4", des: "[Animated poster: house tour]" },
+      { type: "video", src: "/images/novak/6.mp4", des: "[Animated poster: sculpture workshop]" },
+      { type: "image", src: "/images/novak/1.jpg", des: "[Museum shop: collectible sculpture boxes]" },
+      { type: "image", src: "/images/novak/3.jpg", des: "[Museum shop: tote bag]" },
+    ],
+  },
+
   "project-1": {
-    title: "01 Neve",
+    title: "02 Neve",
     description:
       "Neve is an innovative gel cube designed for emergency conditions such as shelters. It enables the growth of vegetables, fruits, and herbs without soil, watering, or sunlight - providing everything the plant needs through a unique self-sustaining technology.",
     tags: [
@@ -50,7 +68,7 @@ const mockProjects = {
   },
 
   "project-2": {
-    title: "02 Wellnest",
+    title: "03 Wellnest",
     description:
       "An app for family caregivers, developed following a research and conversations with caregivers. Our findings showed that the caregiving burden often falls on a single family member. The app offers a collaborative solution: a shared task pool, centralized medical documents, and a focus on positive feedback and mutual recognition.",
     tags: ["App", "UX/UI", "Web", "2025", "Hebrew"],
@@ -76,7 +94,7 @@ const mockProjects = {
   },
 
   "project-3": {
-    title: "03 Maagalim Event",
+    title: "04 Maagalim Event",
     description:
       "An event by ״Hazit HaBayit״, an organization that has been furnishing the homes of evacuees since October 7th. The event invites the public to take part in a cycle of giving, receiving, and reuse. In designing the website, I focused on two main values: respect for objects, treating them as if they were people with their own history and story, and creating an inviting and equal experience, with a design language that avoids any sense of awkwardness ensuring that everyone feels comfortable participating.",
     tags: ["Web", "UX/UI", "Visual Identity", "2025", "Hebrew"],
@@ -113,7 +131,7 @@ const mockProjects = {
   },
 
   "project-4": {
-    title: "04 Lifta",
+    title: "05 Lifta",
     description:
       "A visual identity for the abandoned village of Lifta, created for a children's summer celebration held on-site. Drawing on the village's distinctive stone architecture, I developed a shape-based graphic language with paper cuts, forming lively creatures that bring the place to life. The project includes a logo, poster and a Animation for social media.",
     tags: ["Visual Identity", "Branding", "Motion", "Print", "2024", "Hebrew"],
@@ -132,7 +150,7 @@ const mockProjects = {
     ],
   },
   "project-5": {
-    title: "05 Princess Diana Tribute",
+    title: "06 Princess Diana Tribute",
     description:
       "A booklet that follows Diana's life and the events that followed her death. The project focuses on the less comfortable parts of her story - postpartum depression, bulimia, suicide attempts, and more. Alongside the booklet, I designed a landing page for its launch, continuing the same visual tone and language.",
     tags: ["Typography", "Image Making", "Web", "Print", "2024", "Hebrew"],
@@ -166,7 +184,7 @@ const mockProjects = {
     ],
   },
   "project-6": {
-    title: "06 Sofa Trip",
+    title: "07 Sofa Trip",
     description:
       "A TV app that brings virtual travel experiences straight to your home, allowing users to explore the world without leaving their comfort zone. Inspired by sofa fabrics, I designed a warm and inviting visual language that blends illustration, image-making, and typography into a cohesive identity.",
     tags: ["App", "Branding", "Motion", "2025", "English"],
@@ -204,7 +222,7 @@ const mockProjects = {
     ],
   },
   "project-7": {
-    title: "07 The Dot App",
+    title: "08 The Dot App",
     description:
       "An educational app designed to assist children and Hebrew learners by adding vocalization marks (nikkud) to words. We designed the app so users can type, photograph, or record a word, and the app will provide the correct vocalization marks, making reading more accessible and intuitive.",
     collaboration: "Niv Yagur",
@@ -220,7 +238,7 @@ const mockProjects = {
     ],
   },
   "project-8": {
-    title: "08 Rujum",
+    title: "09 Rujum",
     description:
       "A strategic board game where players compete to conquer mountain peaks by building “Rujums”- traditional stone piles used for trail and summit marking. The game combines natural elements with tactical thinking. The set includes a game board, dice, stones for building the Rujums, game cards, and instructions.",
     collaboration: "Maya Shamir, Goni Israeli",
@@ -241,7 +259,7 @@ const mockProjects = {
     ],
   },
   "project-9": {
-    title: "09 For Now",
+    title: "10 For Now",
     description:
       "A poster designed for “Jerusalem Design Week 2022”, under the theme “For Now”. The event explored the temporality of design, so in my design I took inspiration from a hourglass in order to make the viewer feel the essence of time and temporality.",
     tags: ["Typography", "2022", "Hebrew"],
@@ -285,6 +303,16 @@ const ProjectPage = () => {
           <div>
             <h1 className="text-4xl mb-4">{project.title}</h1>
             <p className="text-black text-base mb-6">{project.description}</p>
+            {project.link && (
+              <a
+                href={project.link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block border border-black text-base px-2 py-2 hover:bg-black hover:text-white transition-colors duration-400"
+              >
+                {project.link.label} ↗
+              </a>
+            )}
             {project.collaboration && (
               <p className="mt-2">
                 Collaboration with <b>{project.collaboration}</b>{" "}
@@ -354,9 +382,7 @@ const ProjectPage = () => {
               onClick={handleNextClick}
               className="border border-black text-base px-2 py-2 cursor-pointer hover:bg-black hover:text-white transition-colors duration-400"
             >
-              {id === "project-6"
-                ? "Next > 01"
-                : `Next > 0${parseInt(id.split("-")[1]) + 1}`}
+              {`Next > ${mockProjects[nextProjectId].title.slice(0, 2)}`}
             </button>
           </div>
         </main>
