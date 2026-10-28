@@ -352,7 +352,7 @@ const ProjectPage = () => {
                     <img
                       src={item.src}
                       alt={`Project ${idx}`}
-                      className="w-auto h-auto"
+                      className="w-auto h-auto max-w-full max-h-[75vh]"
                     />
                   )}
                   {item.type === "video" && (
@@ -362,7 +362,7 @@ const ProjectPage = () => {
                       loop
                       muted
                       playsInline
-                      className="w-fit h-fit"
+                      className="w-auto h-auto max-w-full max-h-[75vh]"
                     >
                       <source src={item.src} type="video/mp4" />
                     </video>
