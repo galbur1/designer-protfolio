@@ -39,7 +39,7 @@ const Home = () => {
                 id="project-2"
               />
             </div>
-            <div className="col-start-1 col-end-6 row-span-3">
+            <div className="col-start-1 col-end-5 row-span-3">
               <ProjectCard
                 title="04 Maagalim Event"
                 image="images/maagalim_new.png"
@@ -48,7 +48,7 @@ const Home = () => {
             </div>
 
             {/* Original first row */}
-            <div className="col-start-6 col-end-10 row-span-3">
+            <div className="col-start-5 col-end-10 row-span-3">
               <ProjectCard
                 title="05 Lifta"
                 image="images/lifta1.gif"
