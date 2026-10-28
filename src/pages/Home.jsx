@@ -16,7 +16,7 @@ const Home = () => {
         <div className="hidden md:block h-full overflow-y-auto scrollbar-hidden border-t border-x border-black">
           <div className="grid grid-cols-12 auto-rows-[14vh] gap-0">
             {/* Final project */}
-            <div className="col-span-12 row-span-3">
+            <div className="col-start-1 col-end-6 row-span-3">
               <ProjectCard
                 title="01 Beit Novak"
                 logo="images/novak/logo.svg"
@@ -25,21 +25,21 @@ const Home = () => {
             </div>
 
             {/* New top row */}
-            <div className="col-start-1 col-end-4 row-span-3">
+            <div className="col-start-6 col-end-9 row-span-3">
               <ProjectCard
                 title="02 Neve"
                 image="images/neve.png"
                 id="project-1"
               />
             </div>
-            <div className="col-start-4 col-end-8 row-span-3">
+            <div className="col-start-9 col-end-13 row-span-3">
               <ProjectCard
                 title="03 Wellnest App"
                 image="images/wellnest.gif"
                 id="project-2"
               />
             </div>
-            <div className="col-start-8 col-end-13 row-span-3">
+            <div className="col-start-1 col-end-6 row-span-3">
               <ProjectCard
                 title="04 Maagalim Event"
                 image="images/maagalim_new.png"
@@ -48,21 +48,21 @@ const Home = () => {
             </div>
 
             {/* Original first row */}
-            <div className="col-start-1 col-end-6 row-span-3">
+            <div className="col-start-6 col-end-10 row-span-3">
               <ProjectCard
                 title="05 Lifta"
                 image="images/lifta1.gif"
                 id="project-4"
               />
             </div>
-            <div className="col-start-6 col-end-10 row-span-3">
+            <div className="col-start-10 col-end-13 row-span-3">
               <ProjectCard
                 title="06 Princess Diana Tribute"
                 image="images/new_diana_autograph.png"
                 id="project-5"
               />
             </div>
-            <div className="col-start-10 col-end-13 row-span-3">
+            <div className="col-start-1 col-end-4 row-span-3">
               <ProjectCard
                 title="07 Sofa Trip"
                 image="images/sofa_trip_gig.gif"
@@ -71,21 +71,21 @@ const Home = () => {
             </div>
 
             {/* Original second row */}
-            <div className="col-start-1 col-end-7 row-span-3">
+            <div className="col-start-4 col-end-8 row-span-3">
               <ProjectCard
                 title="08 Dot App"
                 image="images/dot_app.png"
                 id="project-7"
               />
             </div>
-            <div className="col-start-7 col-end-9 row-span-3">
+            <div className="col-start-8 col-end-10 row-span-3">
               <ProjectCard
                 title="09 Rujum"
                 image="images/rojum.gif"
                 id="project-8"
               />
             </div>
-            <div className="col-start-9 col-end-13 row-span-3">
+            <div className="col-start-10 col-end-13 row-span-3">
               <ProjectCard
                 title="10 For Now"
                 image="images/for_now.png"
