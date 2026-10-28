@@ -1,42 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import Reveal from "./Reveal";
 
-const ProjectCard = ({ title, image, id }) => {
-  const navigate = useNavigate();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handler = (e) => setIsMobile(e.matches);
-    mediaQuery.addEventListener("change", handler);
-
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, []);
+const ProjectCard = ({ project, index }) => {
+  const { id, number, name, year, tags, cover, featured } = project;
 
   return (
-    <div
-      onClick={() => navigate(`/project/${id}`)}
-      className="group relative w-full cursor-pointer overflow-hidden border border-black h-[300px] md:h-full
-        transition-all duration-300 ease-in-out"
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: isMobile ? "contain" : "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+    <Reveal
+      delay={(index % 3) * 80}
+      className={featured ? "lg:col-span-2" : ""}
     >
-      <div
-        className={`
-          relative z-10 p-1 
-          ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"} 
-          transition-opacity duration-300
-        `}
-      >
-        <h2 className="text-base pl-1">{title}</h2>
-      </div>
-    </div>
+      <Link to={`/project/${id}`} className="group block">
+        <div
+          className={`overflow-hidden bg-card ${
+            featured ? "aspect-[4/3] lg:aspect-[16/9]" : "aspect-[4/3]"
+          }`}
+        >
+          <img
+            src={cover}
+            alt={name}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+          />
+        </div>
+        <div className="mt-3 flex items-baseline justify-between gap-4">
+          <h2 className="text-lg tracking-tight">
+            <span className="mr-2 text-mute">{number}</span>
+            {name}
+          </h2>
+          <p className="truncate text-sm text-mute">
+            {[tags[0], year].filter(Boolean).join(" · ")}
+          </p>
+        </div>
+      </Link>
+    </Reveal>
   );
 };
 

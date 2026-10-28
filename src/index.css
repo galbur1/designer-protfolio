@@ -3,46 +3,59 @@
 @font-face {
   font-family: "NotoSansDisplay";
   src: url("/fonts/NotoSansDisplay-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "NotoSansSemibold";
   src: url("/fonts/NotoSansDisplay-SemiBold.ttf") format("truetype");
+  font-display: swap;
+}
+
+@theme {
+  --color-paper: #f5f4f1;
+  --color-card: #ebe9e4;
+  --color-ink: #141414;
+  --color-mute: #78756e;
+  --color-line: #dcd9d2;
+  --font-sans: "NotoSansDisplay", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: "NotoSansDisplay", sans-serif;
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom hover font switch */
-.hover-noto:hover {
-  font-family: "NotoSansSemibold", sans-serif;
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Custom scrollbar just for media section */
-.media-scrollbar::-webkit-scrollbar {
-  width: 9px; /* width of the scrollbar */
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-.media-scrollbar::-webkit-scrollbar-track {
-  margin-top: 28px; /* Add margin at top */
-  margin-bottom: 28px; /* Add margin at bottom */
-}
-
-.media-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #000000; /* dark thumb */
-  border-radius: 10px; /* rounded corners */
-  border: 2px solid #f1f1f1; /* space around thumb */
-}
-
-.media-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555; /* darker thumb on hover */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

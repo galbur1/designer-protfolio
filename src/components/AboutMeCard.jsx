@@ -54,16 +54,16 @@ const AboutMeCard = ({ visible, onClose }) => {
   return (
     <div
       ref={popupRef}
-      className={`fixed bottom-0 left-0 w-full z-10 transition-transform duration-500 bg-white shadow-lg border border-black  
+      className={`fixed bottom-0 left-0 w-full z-10 transition-transform duration-500 bg-paper border-t border-line shadow-[0_-20px_60px_rgba(0,0,0,0.08)]
       ${visible ? "translate-y-0" : "translate-y-full"} 
       h-[50vh] sm:h-auto overflow-y-auto scrollbar-hidden`}
     >
       <div className="p-6 mx-0">
         <button
           onClick={onClose}
-          className="text-black float-right cursor-pointer text-base sm:text-2xl font-bold"
+          className="float-right cursor-pointer text-mute hover:text-ink transition-colors text-base sm:text-xl"
         >
-          X
+          Close
         </button>
         <div className="mt-4 p-1 flex flex-col sm:flex-row sm:items-center gap-6">
           <img
@@ -72,8 +72,8 @@ const AboutMeCard = ({ visible, onClose }) => {
             className="w-65 h-75 mx-15 mt-5 mb-7 object-cover hidden sm:block"
           />
           <div className="flex flex-col gap-4 sm:gap-14 max-w-180 w-full">
-            <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left">
-              I'm Gal, a passionate and curious 4rd year visual communication
+            <p className="text-ink font-serif text-xl sm:text-3xl leading-snug mt-3 sm:mt-0 text-left">
+              I'm Gal, a passionate and curious 4th year visual communication
               student at Bezalel Academy, currently pursuing a B.Des degree.
               <br />
               <br />I bring with me a strong sense of curiosity, a genuine love
@@ -84,26 +84,26 @@ const AboutMeCard = ({ visible, onClose }) => {
               <div className="flex flex-row gap-2">
                 <button
                   onClick={handleClick}
-                  className="border border-black cursor-pointer p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
+                  className="border border-line rounded-full cursor-pointer p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
                 >
                   Galbur1@gmail.com
                 </button>
                 {copied && (
-                  <div className="bg-black text-white text-sm sm:text-base p-2.5 w-fit sm:w-auto text-center">
+                  <div className="bg-ink text-paper rounded-full text-sm sm:text-base p-2.5 w-fit sm:w-auto text-center">
                     Copied!
                   </div>
                 )}
               </div>
 
               <div className="flex flex-row gap-2">
-                <p className="border border-black p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center">
+                <p className="border border-line rounded-full p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center">
                   +972 5423 39921
                 </p>
                 <a
                   href="/cv.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-black cursor-pointer p-2.5 hover:bg-black hover:text-white transition-colors duration-400 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
+                  className="border border-line rounded-full cursor-pointer p-2.5 hover:bg-ink hover:text-paper transition-colors duration-400 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
                 >
                   CV
                 </a>
