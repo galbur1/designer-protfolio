@@ -81,6 +81,16 @@ const ProjectPage = () => {
                 With <span className="text-ink">{project.collaboration}</span>
               </p>
             )}
+            {project.link && (
+              <a
+                href={project.link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-paper transition-opacity hover:opacity-80"
+              >
+                {project.link.label} <span aria-hidden>↗</span>
+              </a>
+            )}
             <ul className="mt-6 flex flex-wrap gap-2">
               {project.tags.map((tag) => (
                 <li
