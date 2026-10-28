@@ -68,17 +68,17 @@ const AboutMeCard = ({ visible, onClose }) => {
         >
           X
         </button>
-        <div className="mt-4 p-1 flex flex-col sm:flex-row sm:items-center gap-6">
+        <div className="mt-4 p-1 flex flex-col sm:flex-row sm:items-stretch gap-10">
           <img
             src="/gal.jpg"
             alt="About Me"
-            className="w-65 h-75 mx-15 mt-5 mb-7 object-cover hidden sm:block"
+            className="w-72 shrink-0 object-cover hidden sm:block"
           />
           <div className="flex flex-col gap-4 sm:gap-14 max-w-180 w-full">
             <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left">
-              I'm Gal, a passionate and curious creative designer. I recently
+              I'm Gal, a passionate and curious graphic designer at Moveo. I
               graduated with a B.Des in Visual Communication from Bezalel
-              Academy, and I now work as a Creative Designer at Moveo.
+              Academy.
               <br />
               <br />I bring with me a strong sense of curiosity, a genuine love
               of learning, close attention to the smallest details, and a real
