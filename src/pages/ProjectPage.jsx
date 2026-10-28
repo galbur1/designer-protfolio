@@ -280,6 +280,9 @@ const ProjectPage = () => {
 
   if (!project) return <div className="p-10">Project not found</div>;
 
+  // Keep media within the screen, except For Now where the poster fills the column.
+  const capHeight = id === "project-9" ? "" : "max-h-[75vh]";
+
   const projectKeys = Object.keys(mockProjects);
   const currentIndex = projectKeys.indexOf(id);
   const nextIndex = (currentIndex + 1) % projectKeys.length;
@@ -352,7 +355,7 @@ const ProjectPage = () => {
                     <img
                       src={item.src}
                       alt={`Project ${idx}`}
-                      className="w-auto h-auto max-w-full max-h-[75vh]"
+                      className={`w-auto h-auto max-w-full ${capHeight}`}
                     />
                   )}
                   {item.type === "video" && (
@@ -362,7 +365,7 @@ const ProjectPage = () => {
                       loop
                       muted
                       playsInline
-                      className="w-auto h-auto max-w-full max-h-[75vh]"
+                      className={`w-auto h-auto max-w-full ${capHeight}`}
                     >
                       <source src={item.src} type="video/mp4" />
                     </video>
