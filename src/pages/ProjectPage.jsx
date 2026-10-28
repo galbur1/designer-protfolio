@@ -12,7 +12,7 @@ const mockProjects = {
     link: { href: "https://beit-novak.vercel.app/", label: "Visit the archive" },
     media: [
       { type: "video", src: "/images/novak/2.mp4", des: "[The archive website on desktop]" },
-      { type: "video", src: "/images/novak/3.mp4", des: "[Animated poster: house tour]" },
+      { type: "video", src: "/images/novak/3.mp4", des: "[Billboard]" },
       { type: "image", src: "/images/novak/1.jpg", des: "[Miniature 3D sculptures]" },
       { type: "image", src: "/images/novak/2.jpg" },
       { type: "video", src: "/images/novak/6.mp4", des: "[Animated poster: sculpture workshop]" },
