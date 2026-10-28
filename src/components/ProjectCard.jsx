@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Reveal from "./Reveal";
 
 const ProjectCard = ({ project, index }) => {
-  const { id, number, name, year, tags, cover, featured } = project;
+  const { id, number, name, year, tags, cover, coverPosition, featured } =
+    project;
 
   return (
     <Reveal
@@ -24,6 +25,7 @@ const ProjectCard = ({ project, index }) => {
             src={cover}
             alt={name}
             loading="lazy"
+            style={{ objectPosition: coverPosition }}
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
           />
         </div>

@@ -237,6 +237,18 @@ const details = {
       },
     ],
   },
+  "project-10": {
+    title: "Beit Novak",
+    description:
+      "A graphic identity and an archive website for the Beit Novak museum. Moshe Novak (1930–2012) was a multidisciplinary artist and, more importantly, my grandfather. The house where he lived and created is now a museum presenting his work, opened by our family to preserve it for future generations. Novak explored his identity as a family man, a Zionist and a Jew, and the landscapes of Haifa and Israel, through sculpture, jewelry, reliefs and tapestries, with a visual language of recurring motifs, his own handwriting, a play between 2D and 3D, vivid colors and geometric abstraction. The design balances preserving that language with developing a new, modern one for the museum. The project includes an archive website, posters, and products for the museum shop.",
+    tags: ["Visual Identity", "Branding", "Web", "Print", "Products", "2026", "Hebrew"],
+    media: [
+      { type: "image", src: "/images/novak/4.jpg", des: "[Exhibition wall graphics]" },
+      { type: "image", src: "/images/novak/2.jpg", des: "[The exhibition space]" },
+      { type: "image", src: "/images/novak/1.jpg", des: "[Museum shop: collectible sculpture boxes]" },
+      { type: "image", src: "/images/novak/3.jpg", des: "[Museum shop: tote bag]" },
+    ],
+  },
   "project-9": {
     title: "09 For Now",
     description:
@@ -259,13 +271,25 @@ const covers = {
   "project-7": "/images/dot_app.png",
   "project-8": "/images/rojum.gif",
   "project-9": "/images/for_now.png",
+  "project-10": "/images/novak/4.jpg",
 };
 
-// Projects shown wide on the home grid.
-const featured = new Set(["project-1", "project-4"]);
+// Projects shown wide on the home grid (keep rows summing to 3 columns).
+const featured = new Set(["project-1", "project-5"]);
 
-export const projects = Object.entries(details).map(([id, p]) => {
-  const [, number, name] = p.title.match(/^(\d+)\s+(.*)$/);
+// Focal point for covers that get cropped by the grid (default: centre).
+const coverPositions = { "project-10": "50% 38%" };
+
+// Display order, newest first. Numbers are derived from this order.
+const order = [
+  "project-10",
+  ...Object.keys(details).filter((id) => id !== "project-10"),
+];
+
+export const projects = order.map((id, i) => {
+  const p = details[id];
+  const number = String(i + 1).padStart(2, "0");
+  const name = p.title.replace(/^\d+\s+/, "");
   const year = p.tags.find((t) => /^\d{4}$/.test(t));
   return {
     id,
@@ -273,6 +297,7 @@ export const projects = Object.entries(details).map(([id, p]) => {
     name,
     year,
     cover: covers[id],
+    coverPosition: coverPositions[id],
     featured: featured.has(id),
     ...p,
     tags: p.tags.filter((t) => t !== year),
