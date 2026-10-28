@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import AboutMeCard from "../components/AboutMeCard";
@@ -10,6 +10,26 @@ const skills = ["Branding", "Web", "Motion", "3D", "AI"];
 const Home = () => {
   const [showAbout, setShowAbout] = useState(false);
   const { state } = useLocation();
+  const gridRef = useRef(null);
+
+  // Drive the grid's wave: one CSS variable updated per frame while scrolling.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame;
+    const update = () => {
+      frame = null;
+      gridRef.current?.style.setProperty("--wave", window.scrollY / 160);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
 
   useEffect(() => {
     if (state?.scrollTo) {
@@ -57,7 +77,10 @@ const Home = () => {
               {String(projects.length).padStart(2, "0")}
             </span>
           </div>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            ref={gridRef}
+            className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {projects.map((p, i) => (
               <ProjectCard key={p.id} project={p} index={i} />
             ))}

@@ -49,7 +49,16 @@ body {
   transform: none;
 }
 
+/* Grid wave: each card rides a sine of the scroll position, offset by its phase */
+.wave {
+  transform: translateY(calc(sin(var(--wave, 0) * 1rad + var(--phase, 0) * 1rad) * 16px));
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .wave {
+    transform: none;
+  }
   .reveal {
     opacity: 1;
     transform: none;

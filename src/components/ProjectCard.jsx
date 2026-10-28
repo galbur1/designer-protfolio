@@ -10,7 +10,11 @@ const ProjectCard = ({ project, index }) => {
       delay={(index % 3) * 80}
       className={featured ? "lg:col-span-2" : ""}
     >
-      <Link to={`/project/${id}`} className="group block">
+      <Link
+        to={`/project/${id}`}
+        className="wave group block"
+        style={{ "--phase": index * 0.8 }}
+      >
         <div
           className={`overflow-hidden bg-card ${
             featured ? "aspect-[4/3] lg:aspect-[16/9]" : "aspect-[4/3]"
