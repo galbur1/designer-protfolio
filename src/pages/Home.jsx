@@ -11,7 +11,7 @@ const Home = () => {
       <Navbar onAboutClick={() => setShowAbout(true)} />
 
       {/* Responsive layout */}
-      <div className="pt-16  h-full p-2">
+      <div className="pt-16  h-full p-2 pb-10">
         {/* Make the container scrollable */}
         <div className="hidden md:block h-full overflow-y-auto overscroll-none scrollbar-hidden border-t border-l border-black">
           <div className="grid grid-cols-12 auto-rows-[14vh] gap-0">
