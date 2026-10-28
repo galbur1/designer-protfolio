@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ProjectCard = ({ title, image, id, logo }) => {
+const ProjectCard = ({ title, image, id, logo, bg }) => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -21,21 +21,20 @@ const ProjectCard = ({ title, image, id, logo }) => {
       className="group relative w-full cursor-pointer overflow-hidden border border-black h-[300px] md:h-full
         transition-all duration-300 ease-in-out"
       style={{
-        backgroundImage: `url(${image})`,
+        ...(logo
+          ? { backgroundColor: bg }
+          : { backgroundImage: `url(${image})` }),
         backgroundSize: isMobile ? "contain" : "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
       {logo && (
-        <>
-          <div className="absolute inset-0 bg-black/35" />
-          <img
-            src={logo}
-            alt=""
-            className="pointer-events-none absolute inset-0 m-auto h-[55%] w-auto"
-          />
-        </>
+        <img
+          src={logo}
+          alt=""
+          className="pointer-events-none absolute inset-0 m-auto h-[55%] w-auto"
+        />
       )}
       <div
         className={`

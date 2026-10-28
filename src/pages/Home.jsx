@@ -19,8 +19,8 @@ const Home = () => {
             <div className="col-span-12 row-span-3">
               <ProjectCard
                 title="01 Beit Novak"
-                image="images/beit_novak.jpg"
-            logo="images/novak/logo.svg"
+                logo="images/novak/logo.svg"
+            bg="#ee4548"
                 logo="images/novak/logo.svg"
                 id="project-10"
               />
@@ -101,8 +101,8 @@ const Home = () => {
         <div className="flex flex-col gap-6 md:hidden px-1 pb-4">
           <ProjectCard
             title="01 Beit Novak"
-            image="images/beit_novak.jpg"
             logo="images/novak/logo.svg"
+            bg="#ee4548"
             id="project-10"
           />
 
