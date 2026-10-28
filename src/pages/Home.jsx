@@ -20,8 +20,6 @@ const Home = () => {
               <ProjectCard
                 title="01 Beit Novak"
                 logo="images/novak/logo.svg"
-            bg="#ee4548"
-                logo="images/novak/logo.svg"
                 id="project-10"
               />
             </div>
@@ -102,7 +100,6 @@ const Home = () => {
           <ProjectCard
             title="01 Beit Novak"
             logo="images/novak/logo.svg"
-            bg="#ee4548"
             id="project-10"
           />
 
