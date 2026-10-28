@@ -5,6 +5,40 @@ import AboutMeCard from "../components/AboutMeCard";
 import Reveal from "../components/Reveal";
 import { projects, getProject } from "../data/projects";
 
+// Group media into rows: consecutive "half" items pair up, everything else stands alone.
+const toRows = (media) =>
+  media.reduce((rows, item) => {
+    const last = rows[rows.length - 1];
+    if (item.layout === "half" && last?.length === 1 && last[0].layout === "half") {
+      last.push(item);
+    } else {
+      rows.push([item]);
+    }
+    return rows;
+  }, []);
+
+const MediaItem = ({ item, alt }) => (
+  <figure className={item.src === "/images/forNow/try1.png" ? "hidden md:block" : ""}>
+    {item.type === "video" ? (
+      <video controls autoPlay loop muted playsInline className="w-full">
+        <source src={item.src} type="video/mp4" />
+      </video>
+    ) : (
+      <img
+        src={item.src}
+        alt={item.des || alt}
+        loading="lazy"
+        className="w-full"
+      />
+    )}
+    {item.des && (
+      <figcaption className="mt-3 text-sm text-mute">
+        {item.des.replace(/^\[|\]$/g, "")}
+      </figcaption>
+    )}
+  </figure>
+);
+
 const ProjectPage = () => {
   const { id } = useParams();
   const project = getProject(id);
@@ -22,6 +56,7 @@ const ProjectPage = () => {
     );
   }
 
+  const rows = toRows(project.media);
   const next = projects[(projects.indexOf(project) + 1) % projects.length];
 
   return (
@@ -60,42 +95,22 @@ const ProjectPage = () => {
         </header>
 
         <section className="mx-auto flex max-w-5xl flex-col gap-14 md:gap-20">
-          {project.media.map((item, idx) => {
-            const desktopOnly = item.src === "/images/forNow/try1.png";
-            return (
-              <Reveal
-                key={idx}
-                className={desktopOnly ? "hidden md:block" : ""}
-              >
-                <figure>
-                  {item.type === "video" ? (
-                    <video
-                      controls
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full"
-                    >
-                      <source src={item.src} type="video/mp4" />
-                    </video>
-                  ) : (
-                    <img
-                      src={item.src}
-                      alt={item.des || `${project.name} ${idx + 1}`}
-                      loading="lazy"
-                      className="w-full"
-                    />
-                  )}
-                  {item.des && (
-                    <figcaption className="mt-3 text-sm text-mute">
-                      {item.des.replace(/^\[|\]$/g, "")}
-                    </figcaption>
-                  )}
-                </figure>
-              </Reveal>
-            );
-          })}
+          {rows.map((row, r) => (
+            <Reveal
+              key={r}
+              className={
+                row[0].layout === "half"
+                  ? "grid gap-6 md:grid-cols-2 md:gap-8"
+                  : row[0].layout === "narrow"
+                    ? "mx-auto w-full max-w-md"
+                    : ""
+              }
+            >
+              {row.map((item) => (
+                <MediaItem key={item.src} item={item} alt={project.name} />
+              ))}
+            </Reveal>
+          ))}
         </section>
 
         <Link
