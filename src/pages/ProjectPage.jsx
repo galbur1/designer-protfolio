@@ -18,6 +18,7 @@ const mockProjects = {
       { type: "video", src: "/images/novak/6.mp4", des: "[Animated poster: sculpture workshop]" },
       { type: "image", src: "/images/novak/3.jpg", des: "[Museum shop: tote bag]" },
       { type: "image", src: "/images/novak/4.jpg", des: "[Exhibition wall graphics]" },
+      { type: "video", src: "/images/novak/website.mp4", des: "[The archive website]" },
     ],
   },
 
