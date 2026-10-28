@@ -23,8 +23,7 @@ const AboutMeCard = ({ visible, onClose }) => {
     confetti({
       particleCount: 100,
       spread: 70,
-      angle: 270,
-      origin: { x, y: (rect.top + rect.height / 2) / window.innerHeight },
+      origin: { x, y: 0.9 },
       startVelocity: 30,
       colors: ["#ff0a54", "#ff477e", "#ff7096", "#ff85a1", "#fbb1bd"],
     });
@@ -55,9 +54,9 @@ const AboutMeCard = ({ visible, onClose }) => {
   return (
     <div
       ref={popupRef}
-      className="fixed top-12 sm:top-16 left-0 w-full z-10 bg-white shadow-lg border border-black
-      animate-[slide-down_0.5s_ease-out]
-      max-h-[calc(100vh-3rem)] sm:max-h-[calc(100vh-4rem)] overflow-y-auto scrollbar-hidden"
+      className={`fixed bottom-0 left-0 w-full z-10 transition-transform duration-500 bg-white shadow-lg border border-black  
+      ${visible ? "translate-y-0" : "translate-y-full"} 
+      h-[50vh] sm:h-auto overflow-y-auto scrollbar-hidden`}
     >
       <div className="p-6 mx-0">
         <button
