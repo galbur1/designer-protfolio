@@ -76,12 +76,14 @@ const AboutMeCard = ({ visible, onClose }) => {
           />
           <div className="flex flex-col gap-4 sm:gap-14 max-w-180 w-full">
             <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left">
-              I'm Gal, a passionate and curious 4rd year visual communication
-              student at Bezalel Academy, currently pursuing a B.Des degree.
+              I'm Gal, a creative designer specializing in branding, UX/UI, and
+              digital product design. I recently graduated with a B.Des in
+              Visual Communication from Bezalel Academy and now work as a
+              Creative Designer at Moveo.
               <br />
-              <br />I bring with me a strong sense of curiosity, a genuine love
-              of learning, close attention to the smallest details, and a real
-              appreciation for teamwork and collaboration.
+              <br />I lead creative processes from concept to execution, with
+              strong visual thinking, close attention to detail, and a passion
+              for digital innovation and AI-powered design.
             </p>
             <div className="mt-4 mb-5 flex flex-col gap-2 sm:flex-row sm:justify-start sm:items-stretch">
               <div className="flex flex-row gap-2">
