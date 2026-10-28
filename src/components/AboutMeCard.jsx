@@ -68,7 +68,7 @@ const AboutMeCard = ({ visible, onClose }) => {
         >
           X
         </button>
-        <div className="mt-4 p-1 flex flex-col sm:flex-row sm:items-stretch gap-10">
+        <div className="mt-4 p-1 flex flex-col sm:flex-row sm:items-stretch sm:pl-16 gap-6 sm:gap-16">
           <img
             src="/gal.jpg"
             alt="About Me"
