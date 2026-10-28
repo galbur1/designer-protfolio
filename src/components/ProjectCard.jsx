@@ -18,7 +18,7 @@ const ProjectCard = ({ title, image, id, logo, bg }) => {
   return (
     <div
       onClick={() => navigate(`/project/${id}`)}
-      className="group relative w-full cursor-pointer overflow-hidden border border-black h-[300px] md:h-full
+      className="group relative w-full cursor-pointer overflow-hidden border border-black md:border-0 md:border-r md:border-b h-[300px] md:h-full
         transition-all duration-300 ease-in-out"
       style={{
         ...(logo

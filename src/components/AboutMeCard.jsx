@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 
 const AboutMeCard = ({ visible, onClose }) => {
   const [copied, setCopied] = useState(null); // "email" | "phone" | null
+  const [closing, setClosing] = useState(false);
   const popupRef = useRef(null);
 
   const handleCopy = (e, key, text) => {
@@ -42,7 +43,7 @@ const AboutMeCard = ({ visible, onClose }) => {
 
     const handleOutsideClick = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {
-        onClose();
+        setClosing(true);
       }
     };
 
@@ -50,21 +51,27 @@ const AboutMeCard = ({ visible, onClose }) => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [visible, onClose]);
+  }, [visible]);
 
   if (!visible) return null;
 
   return (
     <div
       ref={popupRef}
+      onAnimationEnd={() => {
+        if (closing) {
+          setClosing(false);
+          onClose();
+        }
+      }}
       className={`fixed bottom-0 left-0 w-full z-10 bg-white shadow-lg border border-black
-      animate-[slide-up_0.5s_ease-out]
+      ${closing ? "animate-[slide-out_0.4s_ease-in_forwards]" : "animate-[slide-up_0.5s_ease-out]"}
       h-[50vh] sm:h-auto overflow-y-auto scrollbar-hidden`}
     >
       <div className="p-6 mx-0">
         <button
-          onClick={onClose}
-          className="text-black float-right cursor-pointer text-base sm:text-2xl font-bold"
+          onClick={() => setClosing(true)}
+          className="absolute top-4 right-6 text-black cursor-pointer text-base sm:text-2xl font-bold"
         >
           X
         </button>
@@ -72,9 +79,9 @@ const AboutMeCard = ({ visible, onClose }) => {
           <img
             src="/gal.jpg"
             alt="About Me"
-            className="w-72 shrink-0 object-cover hidden sm:block"
+            className="w-80 shrink-0 object-cover hidden sm:block"
           />
-          <div className="flex flex-col gap-4 sm:gap-14 max-w-180 w-full">
+          <div className="flex flex-col gap-4 sm:gap-14 max-w-3xl w-full">
             <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left">
               I'm Gal, a passionate and curious graphic designer at Moveo. I
               graduated with a B.Des in Visual Communication from Bezalel
@@ -86,7 +93,7 @@ const AboutMeCard = ({ visible, onClose }) => {
               across branding, UX/UI, and digital products, and exploring
               where design meets AI.
             </p>
-            <div className="mt-4 mb-5 flex flex-col gap-2 sm:flex-row sm:justify-start sm:items-stretch">
+            <div className="mt-4 mb-5 flex flex-col flex-wrap gap-2 sm:flex-row sm:justify-start sm:items-stretch">
               <div className="flex flex-row gap-2">
                 <button
                   onClick={(e) => handleCopy(e, "email", "galbur1@gmail.com")}

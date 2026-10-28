@@ -56,3 +56,13 @@ body {
     transform: translateY(0);
   }
 }
+
+/* About panel sinks back down when closed */
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
