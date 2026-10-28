@@ -11,7 +11,6 @@ const mockProjects = {
     tags: ["Visual Identity", "Branding", "Web", "Print", "Products", "2026", "Hebrew"],
     link: { href: "https://beit-novak.vercel.app/", label: "Visit the archive" },
     media: [
-      { type: "video", src: "/images/novak/website.mp4", des: "[The archive website]" },
       { type: "video", src: "/images/novak/2.mp4", des: "[The archive website on desktop]" },
       { type: "video", src: "/images/novak/3.mp4", des: "[Animated poster: house tour]" },
       { type: "image", src: "/images/novak/1.jpg", des: "[Museum shop: collectible sculpture boxes]" },
