@@ -8,7 +8,7 @@ const mockProjects = {
     title: "01 Beit Novak",
     description:
       "A graphic identity and archive website for the Beit Novak museum, the house where my grandfather, the artist Moshe Novak (1930–2012), lived and created. His work, from sculpture and jewelry to reliefs and tapestries, draws on recurring motifs, his own handwriting, a play between 2D and 3D, and vivid geometric forms. The design balances preserving that visual language with developing a new, modern one for the museum. The project includes an archive website, posters, and products for the museum shop.",
-    tags: ["Visual Identity", "Branding", "Web", "Print", "3D Print", "2026", "Hebrew"],
+    tags: ["Visual Identity", "Branding", "Web", "3D Print", "2026", "Hebrew"],
     link: { href: "https://beit-novak.vercel.app/", label: "Visit the archive" },
     media: [
       { type: "video", src: "/images/novak/2.mp4", des: "[The archive website on desktop]" },
