@@ -83,7 +83,7 @@ const AboutMeCard = ({ visible, onClose }) => {
           />
           <div className="flex flex-col gap-4 sm:gap-14 max-w-3xl w-full">
             <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left">
-              I'm Gal, a passionate and curious graphic designer at Moveo. I
+              I'm Gal, a passionate and curious Creative Designer at Moveo. I
               graduated with a B.Des in Visual Communication from Bezalel
               Academy.
               <br />
