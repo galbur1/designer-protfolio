@@ -345,7 +345,7 @@ const ProjectPage = () => {
 
             return (
               <div
-                key={idx}
+                key={`${id}-${idx}`}
                 className={`w-full flex justify-end pb-4 ${
                   isHiddenOnMobile ? "hidden md:flex" : ""
                 }`}
