@@ -77,8 +77,9 @@ body {
   }
 }
 
-/* About panel: scrollbar hidden on desktop (it fits), but shown on phones in
-   the same style as the project pages so it is clear the panel scrolls. */
+/* About panel: scrollbar hidden when it all fits on a big screen, but shown on
+   phones and on short screens (e.g. landscape) in the same style as the project
+   pages, so it is clear the panel scrolls. */
 .about-scroll {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -87,7 +88,7 @@ body {
   display: none;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 639px), (max-height: 560px) {
   .about-scroll {
     -ms-overflow-style: auto;
     scrollbar-width: auto;
