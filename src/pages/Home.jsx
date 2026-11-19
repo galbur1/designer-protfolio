@@ -19,7 +19,7 @@ const Home = () => {
             <div className="col-start-1 col-end-6 row-span-3">
               <ProjectCard
                 title="01 Beit Novak"
-                logo="images/novak/logo.svg"
+                model="models/sculpture.glb"
                 id="project-10"
               />
             </div>
@@ -99,7 +99,7 @@ const Home = () => {
         <div className="flex flex-col gap-6 md:hidden px-1 pb-4">
           <ProjectCard
             title="01 Beit Novak"
-            logo="images/novak/logo.svg"
+            model="models/sculpture.glb"
             id="project-10"
           />
 
