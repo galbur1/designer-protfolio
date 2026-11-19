@@ -75,14 +75,14 @@ const AboutMeCard = ({ visible, onClose }) => {
         >
           X
         </button>
-        <div className="mt-4 p-1 flex flex-col sm:flex-row sm:items-stretch sm:pl-16 gap-6 sm:gap-16">
+        <div className="mt-4 p-1 flex flex-col sm:flex-row sm:items-stretch sm:pl-16 gap-2 sm:gap-16">
           <img
             src="/gal.jpg"
             alt="About Me"
-            className="w-80 shrink-0 object-cover hidden sm:block"
+            className="block self-start w-24 h-28 shrink-0 object-cover sm:w-80 sm:h-auto sm:self-stretch"
           />
           <div className="flex flex-col gap-4 sm:gap-14 max-w-3xl w-full">
-            <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left">
+            <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left text-pretty">
               I'm Gal, a passionate and curious Creative Designer at Moveo.
               I&nbsp;graduated with a B.Des in Visual Communication from Bezalel
               Academy.
@@ -91,7 +91,7 @@ const AboutMeCard = ({ visible, onClose }) => {
               of learning, close attention to the smallest details, and a real
               appreciation for teamwork and collaboration. I love working
               across branding, UX/UI, and digital products, and exploring
-              where design meets AI.
+              where design meets&nbsp;AI.
             </p>
             <div className="mt-4 mb-5 flex flex-col flex-wrap gap-2 sm:flex-row sm:justify-start sm:items-stretch">
               <div className="flex flex-row gap-2">
