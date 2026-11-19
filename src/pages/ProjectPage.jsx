@@ -302,7 +302,7 @@ const ProjectPage = () => {
 
       <div className="relative md:fixed top-0 md:top-12 left-0 right-0 bottom-0 flex flex-col overflow-auto border border-black mb-5 mt-4 md:mx-5 mx-5 md:grid md:grid-cols-[minmax(300px,400px)_1fr]">
         {/* Sidebar */}
-        <aside className="border-b md:border-b-0 md:border-r md:border-black px-6 py-8 h-full flex flex-col justify-between overflow-hidden">
+        <aside className="border-b md:border-b-0 md:border-r md:border-black px-6 py-8 h-full flex flex-col justify-between gap-8 overflow-hidden">
           <div>
             <h1 className="text-4xl mb-4">{project.title}</h1>
             <p className="text-black text-base mb-6">{project.description}</p>
@@ -311,9 +311,21 @@ const ProjectPage = () => {
                 href={project.link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-block border border-black text-base px-2 py-2 hover:bg-black hover:text-white transition-colors duration-400"
+                className="mt-6 inline-flex items-center gap-2 border border-black bg-black text-white text-base px-3 py-2 hover:bg-white hover:text-black transition-colors duration-400"
               >
-                {project.link.label} ↗
+                {project.link.label}
+                <svg
+                  viewBox="0 0 512 512"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="44"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M80 432L432 80M140 80H432V372" />
+                </svg>
               </a>
             )}
             {project.collaboration && (
