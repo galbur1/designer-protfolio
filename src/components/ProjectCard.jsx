@@ -31,7 +31,7 @@ const ProjectCard = ({ title, image, id, logo, model, bg }) => {
       }}
     >
       {model && (
-        <div className="pointer-events-none absolute inset-0 p-4">
+        <div className="pointer-events-none absolute inset-0 p-10">
           <Model3D src={model} />
         </div>
       )}

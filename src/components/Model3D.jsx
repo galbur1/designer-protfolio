@@ -14,6 +14,7 @@ const Model3D = ({ src, className = "" }) => {
       auto-rotate
       rotation-per-second="35deg"
       camera-orbit="0deg 78deg auto"
+      orientation="16deg 14deg 0deg"
       interaction-prompt="none"
       disable-zoom
       shadow-intensity="0"
@@ -25,7 +26,9 @@ const Model3D = ({ src, className = "" }) => {
         pointerEvents: "none",
         "--poster-color": "transparent",
       }}
-    />
+    >
+      <div slot="progress-bar" />
+    </model-viewer>
   );
 };
 
