@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const CELL = 9; // size of a dissolving "pixel", in css px
+const CELL = 14; // size of a dissolving "pixel", in css px
 const HOLD = 2200; // how long each illustration stays whole
 const OUT = 1100; // pixels disappear
 const IN = 1100; // pixels of the next one appear
