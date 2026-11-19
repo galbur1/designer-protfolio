@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from "react";
 
 const CELL = 14; // size of a dissolving "pixel", in css px
 const HOLD = 2200; // how long each illustration stays whole
-const OUT = 1100; // pixels disappear
-const IN = 1100; // pixels of the next one appear
+const OUT = 1500; // pixels disappear, one by one, until nothing is left
+const EMPTY = 350; // a beat of emptiness
+const IN = 1500; // pixels of the next one appear until it is whole
 const PADDING = 0.14; // breathing room around the illustration
 
 // Shows illustrations one at a time. To change slides, the current one's
@@ -71,7 +72,7 @@ const PixelSlideshow = ({ images }) => {
         frame = requestAnimationFrame(render); // hidden layout, nothing to draw
         return;
       }
-      const cycle = HOLD + OUT + IN;
+      const cycle = HOLD + OUT + EMPTY + IN;
       const elapsed = now - start;
       const n = Math.floor(elapsed / cycle);
       const t = elapsed - n * cycle;
@@ -84,8 +85,10 @@ const PixelSlideshow = ({ images }) => {
       } else if (t < HOLD + OUT) {
         const p = (t - HOLD) / OUT;
         drawImage(current, (th) => th >= p); // pixels vanish
+      } else if (t < HOLD + OUT + EMPTY) {
+        // nothing: the card is empty for a moment
       } else {
-        const p = (t - HOLD - OUT) / IN;
+        const p = (t - HOLD - OUT - EMPTY) / IN;
         drawImage(next, (th) => th <= p); // new pixels arrive
       }
       frame = requestAnimationFrame(render);
