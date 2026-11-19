@@ -55,8 +55,6 @@ const mockProjects = {
       },
       { type: "image", src: "/images/neve/6.png", des: "[Advertising poster]" },
       { type: "image", src: "/images/neve/7.png", des: "[Advertising poster]" },
-      { type: "image", src: "/images/neve/8.png", des: "[Advertising poster]" },
-      { type: "image", src: "/images/neve/9.png", des: "[Advertising poster]" },
       { type: "image", src: "/images/neve/10.png", des: "[Merchandise]" },
       { type: "image", src: "/images/neve/11.png", des: "[Merchandise]" },
       {
