@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const HOLD = 1500; // ms each item stays before the next one appears
+const HOLD = 2500; // ms each item stays before the next one appears
 
 // Cycles through product photos, one at a time, with an instant swap. The
 // photos have white backgrounds, so they are multiplied onto the card.
