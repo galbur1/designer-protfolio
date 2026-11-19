@@ -79,7 +79,7 @@ const AboutMeCard = ({ visible, onClose }) => {
           <img
             src="/gal.jpg"
             alt="About Me"
-            className="block self-start w-24 h-28 shrink-0 object-cover sm:w-80 sm:h-auto sm:self-stretch"
+            className="w-80 shrink-0 object-cover hidden sm:block"
           />
           <div className="flex flex-col gap-4 sm:gap-14 max-w-3xl w-full">
             <p className="text-black text-base sm:text-2xl leading-5 sm:leading-[2.0rem] mt-3 sm:mt-0 text-left text-pretty">
@@ -93,8 +93,14 @@ const AboutMeCard = ({ visible, onClose }) => {
               across branding, UX/UI, and digital products, and exploring
               where design meets&nbsp;AI.
             </p>
-            <div className="mt-4 mb-5 flex flex-col flex-wrap gap-2 sm:flex-row sm:justify-start sm:items-stretch">
-              <div className="flex flex-row gap-2">
+            <div className="flex items-end gap-3 sm:contents">
+              <img
+                src="/gal.jpg"
+                alt=""
+                className="sm:hidden h-28 w-24 shrink-0 object-cover"
+              />
+              <div className="mt-4 mb-5 flex min-w-0 flex-col flex-wrap gap-2 sm:flex-row sm:justify-start sm:items-stretch">
+              <div className="flex flex-row flex-wrap gap-2">
                 <button
                   onClick={(e) => handleCopy(e, "email", "galbur1@gmail.com")}
                   className="border border-black cursor-pointer p-2.5 hover:bg-black hover:text-white transition-colors duration-400 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
@@ -108,7 +114,7 @@ const AboutMeCard = ({ visible, onClose }) => {
                 )}
               </div>
 
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row flex-wrap gap-2">
                 <button
                   onClick={(e) => handleCopy(e, "phone", "+972542339921")}
                   className="border border-black cursor-pointer p-2.5 hover:bg-black hover:text-white transition-colors duration-400 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
@@ -128,6 +134,7 @@ const AboutMeCard = ({ visible, onClose }) => {
                 >
                   CV
                 </a>
+              </div>
               </div>
             </div>
           </div>
