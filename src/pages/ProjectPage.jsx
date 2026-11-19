@@ -277,12 +277,16 @@ const ProjectPage = () => {
   const navigate = useNavigate();
   const [showAbout, setShowAbout] = useState(false);
 
-  // Moving to another project always starts at the top: the page itself on
+  // Moving to another project glides back up to the top: the page itself on
   // phones, the framed container and media column on desktop.
   useEffect(() => {
-    window.scrollTo(0, 0);
-    frameRef.current?.scrollTo(0, 0);
-    mainRef.current?.scrollTo(0, 0);
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches
+      ? "auto"
+      : "smooth";
+    window.scrollTo({ top: 0, behavior });
+    frameRef.current?.scrollTo({ top: 0, behavior });
+    mainRef.current?.scrollTo({ top: 0, behavior });
   }, [id]);
 
   if (!project) return <div className="p-10">Project not found</div>;
@@ -304,7 +308,7 @@ const ProjectPage = () => {
       <Navbar onAboutClick={() => setShowAbout(true)} />
       <AboutMeCard visible={showAbout} onClose={() => setShowAbout(false)} />
 
-      <div key={id} ref={frameRef} className="animate-[page-in_0.55s_ease-out] relative md:fixed top-0 md:top-12 left-0 right-0 bottom-0 flex flex-col overflow-auto border border-black mb-5 mt-4 md:mx-5 mx-5 md:grid md:grid-cols-[minmax(300px,400px)_1fr]">
+      <div ref={frameRef} className="relative md:fixed top-0 md:top-12 left-0 right-0 bottom-0 flex flex-col overflow-auto border border-black mb-5 mt-4 md:mx-5 mx-5 md:grid md:grid-cols-[minmax(300px,400px)_1fr]">
         {/* Sidebar */}
         <aside className="border-b md:border-b-0 md:border-r md:border-black px-6 py-8 h-full flex flex-col justify-between gap-8 overflow-hidden">
           <div>
