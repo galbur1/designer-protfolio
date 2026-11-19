@@ -304,7 +304,7 @@ const ProjectPage = () => {
       <Navbar onAboutClick={() => setShowAbout(true)} />
       <AboutMeCard visible={showAbout} onClose={() => setShowAbout(false)} />
 
-      <div ref={frameRef} className="relative md:fixed top-0 md:top-12 left-0 right-0 bottom-0 flex flex-col overflow-auto border border-black mb-5 mt-4 md:mx-5 mx-5 md:grid md:grid-cols-[minmax(300px,400px)_1fr]">
+      <div key={id} ref={frameRef} className="animate-[page-in_0.55s_ease-out] relative md:fixed top-0 md:top-12 left-0 right-0 bottom-0 flex flex-col overflow-auto border border-black mb-5 mt-4 md:mx-5 mx-5 md:grid md:grid-cols-[minmax(300px,400px)_1fr]">
         {/* Sidebar */}
         <aside className="border-b md:border-b-0 md:border-r md:border-black px-6 py-8 h-full flex flex-col justify-between gap-8 overflow-hidden">
           <div>
