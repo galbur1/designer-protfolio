@@ -72,25 +72,25 @@ const PixelSlideshow = ({ images }) => {
         frame = requestAnimationFrame(render); // hidden layout, nothing to draw
         return;
       }
-      const cycle = HOLD + OUT + EMPTY + IN;
+      // Each illustration: pixels arrive from nothing, hold whole, vanish,
+      // then a beat of emptiness before the next one starts.
+      const cycle = IN + HOLD + OUT + EMPTY;
       const elapsed = now - start;
       const n = Math.floor(elapsed / cycle);
       const t = elapsed - n * cycle;
-      const current = imgs[n % imgs.length];
-      const next = imgs[(n + 1) % imgs.length];
+      const img = imgs[n % imgs.length];
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (t < HOLD) {
-        drawImage(current, () => true);
-      } else if (t < HOLD + OUT) {
-        const p = (t - HOLD) / OUT;
-        drawImage(current, (th) => th >= p); // pixels vanish
-      } else if (t < HOLD + OUT + EMPTY) {
-        // nothing: the card is empty for a moment
-      } else {
-        const p = (t - HOLD - OUT - EMPTY) / IN;
-        drawImage(next, (th) => th <= p); // new pixels arrive
+      if (t < IN) {
+        const p = t / IN;
+        drawImage(img, (th) => th <= p); // pixels arrive
+      } else if (t < IN + HOLD) {
+        drawImage(img, () => true); // whole
+      } else if (t < IN + HOLD + OUT) {
+        const p = (t - IN - HOLD) / OUT;
+        drawImage(img, (th) => th >= p); // pixels vanish
       }
+      // else: empty for a moment
       frame = requestAnimationFrame(render);
     };
 
