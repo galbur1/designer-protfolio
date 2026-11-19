@@ -272,18 +272,27 @@ const mockProjects = {
 const easeInOutCubic = (t) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-// Eases a scroll position back to 0 over a calm 1.3-2.4s (longer for longer
-// distances). Returns a function that cancels the glide.
-const glideToTop = (get, set) => {
-  const from = get();
-  if (from <= 0) return () => {};
-  const duration = Math.min(2400, Math.max(1300, from * 0.7));
+// Every project glides up the same way: whatever the page length, it starts
+// at most GLIDE_DISTANCE from the top and eases to 0 in GLIDE_MS, so the
+// distance, time and speed are identical. Returns a function that cancels it.
+const GLIDE_DISTANCE = 800; // px
+const GLIDE_MS = 1300;
+
+const glideFrom = (from, set, onDone) => {
+  if (from <= 0) {
+    onDone?.();
+    return () => {};
+  }
+  set(from);
+  // A shorter remaining distance keeps the same pace instead of crawling.
+  const duration = Math.max(500, (GLIDE_MS * from) / GLIDE_DISTANCE);
   const start = performance.now();
   let frame;
   const step = (now) => {
     const t = Math.min(1, (now - start) / duration);
     set(from * (1 - easeInOutCubic(t)));
     if (t < 1) frame = requestAnimationFrame(step);
+    else onDone?.();
   };
   frame = requestAnimationFrame(step);
   return () => cancelAnimationFrame(frame);
@@ -292,42 +301,66 @@ const glideToTop = (get, set) => {
 const ProjectPage = () => {
   const mainRef = useRef(null);
   const frameRef = useRef(null);
+  const spacerRef = useRef(null);
+  const leftAt = useRef(null); // scroll offsets when "Next" was pressed
   const { id } = useParams();
   const project = mockProjects[id];
   const navigate = useNavigate();
   const [showAbout, setShowAbout] = useState(false);
 
   // Moving to another project glides back up to the top, slowly: the page
-  // itself on phones, the framed container and media column on desktop.
+  // itself on phones, the media column on desktop. The new page may still be
+  // short (its images are loading), so room is held open for the glide.
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const frame = frameRef.current;
     const main = mainRef.current;
+    const spacer = spacerRef.current;
+    const html = document.documentElement;
+    const left = leftAt.current;
+    leftAt.current = null;
 
+    if (frame) frame.scrollTop = 0;
     if (reduce) {
       window.scrollTo(0, 0);
-      if (frame) frame.scrollTop = 0;
       if (main) main.scrollTop = 0;
       return;
     }
 
+    const winFrom = Math.min(left ? left.win : window.scrollY, GLIDE_DISTANCE);
+    const mainFrom = main
+      ? Math.min(left ? left.main : main.scrollTop, GLIDE_DISTANCE)
+      : 0;
+
+    if (winFrom > 0) html.style.minHeight = `${winFrom + window.innerHeight}px`;
+    if (mainFrom > 0 && spacer) {
+      spacer.style.height = `${mainFrom + main.clientHeight}px`;
+    }
+    const release = () => {
+      html.style.minHeight = "";
+      if (spacer) spacer.style.height = "0px";
+    };
+
+    let pending = (winFrom > 0) + (mainFrom > 0);
+    const done = () => {
+      pending -= 1;
+      if (pending <= 0) release();
+    };
+    if (pending === 0) release();
+
     const stops = [
-      glideToTop(
-        () => window.scrollY,
-        (y) => window.scrollTo(0, y)
-      ),
-      frame &&
-        glideToTop(
-          () => frame.scrollTop,
-          (y) => (frame.scrollTop = y)
-        ),
+      glideFrom(winFrom, (y) => window.scrollTo(0, y), winFrom > 0 ? done : null),
       main &&
-        glideToTop(
-          () => main.scrollTop,
-          (y) => (main.scrollTop = y)
+        glideFrom(
+          mainFrom,
+          (y) => (main.scrollTop = y),
+          mainFrom > 0 ? done : null
         ),
     ];
-    const stop = () => stops.forEach((fn) => fn && fn());
+    const stop = () => {
+      stops.forEach((fn) => fn && fn());
+      release();
+    };
     // Let the visitor take over: any scroll gesture cancels the glide.
     window.addEventListener("wheel", stop, { passive: true });
     window.addEventListener("touchstart", stop, { passive: true });
@@ -349,6 +382,10 @@ const ProjectPage = () => {
   const nextProjectId = projectKeys[nextIndex];
 
   const handleNextClick = () => {
+    leftAt.current = {
+      win: window.scrollY,
+      main: mainRef.current ? mainRef.current.scrollTop : 0,
+    };
     navigate(`/project/${nextProjectId}`);
   };
 
@@ -457,6 +494,7 @@ const ProjectPage = () => {
               {`Next > ${mockProjects[nextProjectId].title.slice(0, 2)}`}
             </button>
           </div>
+          <div ref={spacerRef} style={{ height: 0 }} aria-hidden="true" />
         </main>
       </div>
     </div>
