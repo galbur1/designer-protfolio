@@ -337,7 +337,7 @@ const ProjectPage = () => {
             {project.tags.map((tag, idx) => (
               <span
                 key={idx}
-                className="border border-black text-base px-2 py-2"
+                className="border border-dashed border-black text-base px-2 py-2"
               >
                 {tag}
               </span>
