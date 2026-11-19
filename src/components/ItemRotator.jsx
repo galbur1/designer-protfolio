@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
 
-const HOLD = 1700; // ms each item stays
-const FADE = 500; // ms crossfade
+const HOLD = 1500; // ms each item stays before the next one appears
 
-// Cycles through product photos, one at a time. The photos have white
-// backgrounds, so they are multiplied onto the card to blend in.
+// Cycles through product photos, one at a time, with an instant swap. The
+// photos have white backgrounds, so they are multiplied onto the card.
 const ItemRotator = ({ images }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(
-      () => setIndex((i) => (i + 1) % images.length),
-      HOLD + FADE
-    );
+    const id = setInterval(() => setIndex((i) => (i + 1) % images.length), HOLD);
     return () => clearInterval(id);
   }, [images]);
 
   return (
-    <div className="pointer-events-none absolute inset-0 p-10">
-      <div className="relative h-full w-full">
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div className="relative h-[38%] w-[38%]">
         {images.map((src, i) => (
           <img
             key={src}
@@ -27,10 +23,7 @@ const ItemRotator = ({ images }) => {
             alt=""
             draggable="false"
             className="absolute inset-0 h-full w-full object-contain mix-blend-multiply"
-            style={{
-              opacity: i === index ? 1 : 0,
-              transition: `opacity ${FADE}ms ease-in-out`,
-            }}
+            style={{ visibility: i === index ? "visible" : "hidden" }}
           />
         ))}
       </div>
