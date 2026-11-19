@@ -97,7 +97,7 @@ const AboutMeCard = ({ visible, onClose }) => {
               <div className="flex flex-row gap-2">
                 <button
                   onClick={(e) => handleCopy(e, "email", "galbur1@gmail.com")}
-                  className="border border-black cursor-pointer p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
+                  className="border border-black cursor-pointer p-2.5 hover:bg-black hover:text-white transition-colors duration-400 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
                 >
                   Galbur1@gmail.com
                 </button>
@@ -111,7 +111,7 @@ const AboutMeCard = ({ visible, onClose }) => {
               <div className="flex flex-row gap-2">
                 <button
                   onClick={(e) => handleCopy(e, "phone", "+972542339921")}
-                  className="border border-black cursor-pointer p-2.5 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
+                  className="border border-black cursor-pointer p-2.5 hover:bg-black hover:text-white transition-colors duration-400 whitespace-nowrap text-sm sm:text-base w-fit sm:w-auto text-center"
                 >
                   +972 5423 39921
                 </button>
