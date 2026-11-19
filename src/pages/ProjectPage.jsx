@@ -269,6 +269,26 @@ const mockProjects = {
   // Add more projects as needed...
 };
 
+const easeInOutCubic = (t) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+// Eases a scroll position back to 0 over a calm 1.3-2.4s (longer for longer
+// distances). Returns a function that cancels the glide.
+const glideToTop = (get, set) => {
+  const from = get();
+  if (from <= 0) return () => {};
+  const duration = Math.min(2400, Math.max(1300, from * 0.7));
+  const start = performance.now();
+  let frame;
+  const step = (now) => {
+    const t = Math.min(1, (now - start) / duration);
+    set(from * (1 - easeInOutCubic(t)));
+    if (t < 1) frame = requestAnimationFrame(step);
+  };
+  frame = requestAnimationFrame(step);
+  return () => cancelAnimationFrame(frame);
+};
+
 const ProjectPage = () => {
   const mainRef = useRef(null);
   const frameRef = useRef(null);
@@ -277,16 +297,45 @@ const ProjectPage = () => {
   const navigate = useNavigate();
   const [showAbout, setShowAbout] = useState(false);
 
-  // Moving to another project glides back up to the top: the page itself on
-  // phones, the framed container and media column on desktop.
+  // Moving to another project glides back up to the top, slowly: the page
+  // itself on phones, the framed container and media column on desktop.
   useEffect(() => {
-    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
-      .matches
-      ? "auto"
-      : "smooth";
-    window.scrollTo({ top: 0, behavior });
-    frameRef.current?.scrollTo({ top: 0, behavior });
-    mainRef.current?.scrollTo({ top: 0, behavior });
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const frame = frameRef.current;
+    const main = mainRef.current;
+
+    if (reduce) {
+      window.scrollTo(0, 0);
+      if (frame) frame.scrollTop = 0;
+      if (main) main.scrollTop = 0;
+      return;
+    }
+
+    const stops = [
+      glideToTop(
+        () => window.scrollY,
+        (y) => window.scrollTo(0, y)
+      ),
+      frame &&
+        glideToTop(
+          () => frame.scrollTop,
+          (y) => (frame.scrollTop = y)
+        ),
+      main &&
+        glideToTop(
+          () => main.scrollTop,
+          (y) => (main.scrollTop = y)
+        ),
+    ];
+    const stop = () => stops.forEach((fn) => fn && fn());
+    // Let the visitor take over: any scroll gesture cancels the glide.
+    window.addEventListener("wheel", stop, { passive: true });
+    window.addEventListener("touchstart", stop, { passive: true });
+    return () => {
+      stop();
+      window.removeEventListener("wheel", stop);
+      window.removeEventListener("touchstart", stop);
+    };
   }, [id]);
 
   if (!project) return <div className="p-10">Project not found</div>;
