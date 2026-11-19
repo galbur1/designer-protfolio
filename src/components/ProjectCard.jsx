@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Model3D from "./Model3D";
 import PixelSlideshow from "./PixelSlideshow";
+import ItemRotator from "./ItemRotator";
 
-const ProjectCard = ({ title, image, id, logo, model, slides, bg }) => {
+const ProjectCard = ({ title, image, id, logo, model, slides, items, bg }) => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -23,7 +24,7 @@ const ProjectCard = ({ title, image, id, logo, model, slides, bg }) => {
       className="group relative w-full cursor-pointer overflow-hidden border border-black md:border-0 md:border-r md:border-b h-[300px] md:h-full
         transition-all duration-300 ease-in-out"
       style={{
-        ...(logo || model || slides
+        ...(logo || model || slides || items
           ? { backgroundColor: bg }
           : { backgroundImage: `url(${image})` }),
         backgroundSize: isMobile ? "contain" : "cover",
@@ -32,6 +33,7 @@ const ProjectCard = ({ title, image, id, logo, model, slides, bg }) => {
       }}
     >
       {slides && <PixelSlideshow images={slides} />}
+      {items && <ItemRotator images={items} />}
       {model && (
         <div className="pointer-events-none absolute inset-0 p-10">
           <Model3D src={model} />
