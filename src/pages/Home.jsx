@@ -3,6 +3,13 @@ import Navbar from "../components/Navbar";
 import AboutMeCard from "../components/AboutMeCard";
 import ProjectCard from "../components/ProjectCard";
 
+// Neve's illustrations, shown one at a time on its card.
+const NEVE_SLIDES = [
+  "images/neve/illustrations/1.png",
+  "images/neve/illustrations/2.png",
+  "images/neve/illustrations/3.png",
+];
+
 const Home = () => {
   const [showAbout, setShowAbout] = useState(false);
 
@@ -28,7 +35,7 @@ const Home = () => {
             <div className="col-start-6 col-end-9 row-span-3">
               <ProjectCard
                 title="02 Neve"
-                image="images/neve.png"
+                slides={NEVE_SLIDES}
                 id="project-1"
               />
             </div>
@@ -104,7 +111,7 @@ const Home = () => {
           />
 
           {/* New row for mobile */}
-          <ProjectCard title="02 Neve" image="images/neve.png" id="project-1" />
+          <ProjectCard title="02 Neve" slides={NEVE_SLIDES} id="project-1" />
           <ProjectCard
             title="03 Wellnest"
             image="images/wellnest.gif"

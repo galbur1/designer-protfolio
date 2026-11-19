@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Model3D from "./Model3D";
+import PixelSlideshow from "./PixelSlideshow";
 
-const ProjectCard = ({ title, image, id, logo, model, bg }) => {
+const ProjectCard = ({ title, image, id, logo, model, slides, bg }) => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -22,7 +23,7 @@ const ProjectCard = ({ title, image, id, logo, model, bg }) => {
       className="group relative w-full cursor-pointer overflow-hidden border border-black md:border-0 md:border-r md:border-b h-[300px] md:h-full
         transition-all duration-300 ease-in-out"
       style={{
-        ...(logo || model
+        ...(logo || model || slides
           ? { backgroundColor: bg }
           : { backgroundImage: `url(${image})` }),
         backgroundSize: isMobile ? "contain" : "cover",
@@ -30,6 +31,7 @@ const ProjectCard = ({ title, image, id, logo, model, bg }) => {
         backgroundRepeat: "no-repeat",
       }}
     >
+      {slides && <PixelSlideshow images={slides} />}
       {model && (
         <div className="pointer-events-none absolute inset-0 p-10">
           <Model3D src={model} />
