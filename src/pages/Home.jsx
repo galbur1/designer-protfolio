@@ -10,11 +10,6 @@ const NEVE_SLIDES = [
   "images/neve/illustrations/3.png",
 ];
 
-// Maagalim Event: the donated items, shown one after another.
-const MAAGALIM_ITEMS = [1, 2, 3, 4, 5].map(
-  (n) => `images/maagalim/items/${n}.webp`
-);
-
 const Home = () => {
   const [showAbout, setShowAbout] = useState(false);
 
@@ -54,8 +49,7 @@ const Home = () => {
             <div className="col-start-1 col-end-5 row-span-3">
               <ProjectCard
                 title="04 Maagalim Event"
-                items={MAAGALIM_ITEMS}
-                bg="#ffffff"
+                image="images/maagalim_new.png"
                 id="project-3"
               />
             </div>
@@ -125,8 +119,7 @@ const Home = () => {
           />
           <ProjectCard
             title="04 Maagalim"
-            items={MAAGALIM_ITEMS}
-            bg="#ffffff"
+            image="images/maagalim_new.png"
             id="project-3"
           />
 
