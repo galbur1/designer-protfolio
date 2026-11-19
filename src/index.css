@@ -5,6 +5,15 @@
   src: url("/fonts/NotoSansDisplay-Regular.ttf") format("truetype");
 }
 
+/* The SemiBold file doubles as the bold weight, so <b> and font-semibold use a
+   real face instead of a browser-faked bold. */
+@font-face {
+  font-family: "NotoSansDisplay";
+  src: url("/fonts/NotoSansDisplay-SemiBold.ttf") format("truetype");
+  font-weight: 600 700;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "NotoSansSemibold";
   src: url("/fonts/NotoSansDisplay-SemiBold.ttf") format("truetype");
