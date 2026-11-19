@@ -66,7 +66,7 @@ const AboutMeCard = ({ visible, onClose }) => {
       }}
       className={`fixed bottom-0 left-0 w-full z-10 bg-white shadow-lg border border-black
       ${closing ? "animate-[slide-out_0.4s_ease-in_forwards]" : "animate-[slide-up_0.5s_ease-out]"}
-      h-[50vh] sm:h-auto overflow-y-auto scrollbar-hidden`}
+      h-[50vh] sm:h-auto overflow-y-auto about-scroll`}
     >
       <div className="p-6 mx-0">
         <button

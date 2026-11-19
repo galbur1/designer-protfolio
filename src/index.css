@@ -76,3 +76,33 @@ body {
     transform: translateY(100%);
   }
 }
+
+/* About panel: scrollbar hidden on desktop (it fits), but shown on phones in
+   the same style as the project pages so it is clear the panel scrolls. */
+.about-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.about-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .about-scroll {
+    -ms-overflow-style: auto;
+    scrollbar-width: auto;
+  }
+  .about-scroll::-webkit-scrollbar {
+    display: block;
+    width: 9px;
+  }
+  .about-scroll::-webkit-scrollbar-track {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+  .about-scroll::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+  }
+}
