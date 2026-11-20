@@ -405,7 +405,7 @@ const ProjectPage = () => {
                 href={project.link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 border border-black bg-black text-white text-base px-3 py-2 hover:bg-[#ff0000] hover:border-[#ff0000] transition-colors duration-400"
+                className="mt-6 hidden items-center gap-2 border border-black bg-black md:inline-flex text-white text-base px-3 py-2 hover:bg-[#ff0000] hover:border-[#ff0000] transition-colors duration-400"
               >
                 {project.link.label}
                 <svg
