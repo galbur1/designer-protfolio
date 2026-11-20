@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/favicon-180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preload" href="/models/sculpture.glb" as="fetch" crossorigin="anonymous" />
     <title>Gal Burshtein</title>
-    <!-- Share previews (WhatsApp etc.): title only, no large image -->
+    <!-- Share previews (WhatsApp etc.): a small square image keeps the card compact -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Gal Burshtein" />
+    <meta property="og:image" content="https://gal-burshtein.vercel.app/share-icon.png" />
+    <meta property="og:image:width" content="200" />
+    <meta property="og:image:height" content="200" />
+    <meta property="og:image:alt" content="Gal Burshtein" />
   </head>
   <body>
     <div id="root"></div>
